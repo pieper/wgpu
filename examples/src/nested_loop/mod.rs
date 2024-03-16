@@ -1,5 +1,5 @@
 //use std::{borrow::Cow};
-use std::{borrow::Cow, str::FromStr};
+use std::{borrow::Cow};
 use wgpu::util::DeviceExt;
 
 // Indicates a u32 overflow in an intermediate Collatz value
@@ -8,30 +8,20 @@ const OVERFLOW: u32 = 0xffffffff;
 #[cfg_attr(test, allow(dead_code))]
 async fn run() {
 
-    let numbers = if std::env::args().len() <= 2 {
-        let default = vec![
-                           0,0,0,
-                           0,0,0,
-                           0,0,0,
+    let numbers = vec![
+       0,0,0,
+       0,0,0,
+       0,0,0,
 
-                           0,0,0,
-                           0,0,0,
-                           0,0,0,
+       0,0,0,
+       0,0,0,
+       0,0,0,
 
-                           0,0,0,
-                           0,0,0,
-                           0,0,0,
+       0,0,0,
+       0,0,0,
+       0,0,0,
 
-                           ]; 
-        println!("No numbers were provided, defaulting to {default:?}");
-        default
-    } else {
-        std::env::args()
-            .skip(2)
-            .map(|s| u32::from_str(&s).expect("You must pass a list of positive integers!"))
-            .collect()
-    };
-
+       ];
 
     let steps = execute_gpu(&numbers).await.unwrap();
 
@@ -43,11 +33,18 @@ async fn run() {
         })
         .collect();
 
-    println!("Steps: [{}]", disp_steps.join(", "));
+    let mut slice_count = 0;
+    loop {
+        println!("[{}]", &disp_steps[slice_count+0..slice_count+3].join(", "));
+        println!("[{}]", &disp_steps[slice_count+3..slice_count+6].join(", "));
+        println!("[{}]", &disp_steps[slice_count+6..slice_count+9].join(", "));
+        println!("");
+        slice_count += 1;
+        if slice_count > 2 {
+            break;
+        }
+    };
 
-    println!("[{}]", &disp_steps[0..10].join(", "));
-    println!("[{}]", &disp_steps[10..19].join(", "));
-    println!("[{}]", &disp_steps[19..27].join(", "));
     #[cfg(target_arch = "wasm32")]
     log::info!("Steps: [{}]", disp_steps.join(", "));
 }
