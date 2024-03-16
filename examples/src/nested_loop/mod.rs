@@ -8,14 +8,7 @@ const OVERFLOW: u32 = 0xffffffff;
 #[cfg_attr(test, allow(dead_code))]
 async fn run() {
 
-    /*
-    let numbers = vec![0,0,0,
-                       0,0,0,
-                       0,0,0]; 
-    */
-
     let numbers = if std::env::args().len() <= 2 {
-        //let default = vec![1, 2, 3, 4];
         let default = vec![
                            0,0,0,
                            0,0,0,
@@ -30,9 +23,6 @@ async fn run() {
                            0,0,0,
 
                            ]; 
-        //let default = vec![0,0,0,0];
-        //let default = vec![1,2,3,4];
-        //let default = vec![1, 2, 3, 4];
         println!("No numbers were provided, defaulting to {default:?}");
         default
     } else {
