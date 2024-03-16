@@ -146,6 +146,12 @@ const EXAMPLES: &[ExampleDesc] = &[
         webgl: false, // No RODS
         webgpu: true,
     },
+    ExampleDesc {
+        name: "nested_loop",
+        function: wgpu_examples::nested_loop::main,
+        webgl: false, // No compute
+        webgpu: true,
+    },
 ];
 
 fn get_example_name() -> Option<String> {
