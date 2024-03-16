@@ -31,10 +31,7 @@ fn main(@builtin(global_invocation_id) id: vec3<u32>) {
         }
     }
 
-    //v_indices[id.x] = 42u;
-    //v_indices[id.x] = neighborsVisited;
-    //v_indices[id.x] = id.x;
-    
-    //v_indices[idi32.x + idi32.y * 3 + idi32.z * 9] = id.x;
+    //v_indices[idi32.x + idi32.y * 3 + idi32.z * 9] = id.z;
+
     v_indices[idi32.x + idi32.y * 3 + idi32.z * 9] = neighborsVisited;
 }

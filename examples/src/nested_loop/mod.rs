@@ -33,11 +33,13 @@ async fn run() {
         })
         .collect();
 
+    let slice_size = 9;
     let mut slice_count = 0;
     loop {
-        println!("[{}]", &disp_steps[slice_count+0..slice_count+3].join(", "));
-        println!("[{}]", &disp_steps[slice_count+3..slice_count+6].join(", "));
-        println!("[{}]", &disp_steps[slice_count+6..slice_count+9].join(", "));
+        let off = slice_size * slice_count;
+        println!("[{}]", &disp_steps[off+0..off+3].join(", "));
+        println!("[{}]", &disp_steps[off+3..off+6].join(", "));
+        println!("[{}]", &disp_steps[off+6..off+9].join(", "));
         println!("");
         slice_count += 1;
         if slice_count > 2 {
