@@ -7,12 +7,21 @@ Created to test https://github.com/gfx-rs/wgpu/issues/5067
 ## To Run
 
 ```
-RUST_LOG=nexted_loop cargo run --bin wgpu-examples nested_loop
+RUST_LOG=nested_loop cargo run --bin wgpu-examples nested_loop
 ```
 
 ## Example Output
 
 ```
-No numbers were provided, defaulting to [1, 2, 3, 4]
-Steps: [0, 1, 7, 2]
+[7, 11, 7]
+[11, 17, 11]
+[7, 11, 7]
+
+[11, 17, 11]
+[17, 26, 17]
+[11, 17, 11]
+
+[7, 11, 7]
+[11, 17, 11]
+[7, 11, 7]
 ```
